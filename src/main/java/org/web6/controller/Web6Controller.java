@@ -29,10 +29,6 @@ public class Web6Controller {
 	public String angularjsTheBasics() {
 		return "angularjs-The-Basics";
 	}
-//	@RequestMapping("/ajs-ajax-1")
-//	public String ajs_ajax_1() {
-//		return "ajs-ajax-1";
-//	}
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
@@ -43,13 +39,5 @@ public class Web6Controller {
 		return new Greeting(counter.incrementAndGet(),
 				String.format(template, name));
 	}
-//	public @ResponseBody Greeting json2(
-	@RequestMapping( value = "/json2", method = RequestMethod.GET , consumes = {"text/javascript"})
-	public @ResponseBody String json2(
-			@RequestParam(value="name", required=false, defaultValue="World") String name) {
-//		return new Greeting(counter.incrementAndGet(),
-//				String.format(template, name));
-		return "{'id':1,'content':'Hello, World!'}";
-	}
-	
+
 }
