@@ -1,4 +1,4 @@
-package org.web5.controller;
+package org.web6.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
