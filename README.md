@@ -8,7 +8,6 @@ spring-boot,
 org.webjars:angularjs,
 org.thymeleaf
 
-with 
 * $http -- ajax from angularjs
 * class to json
 
