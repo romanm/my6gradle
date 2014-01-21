@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html ng-app="">
+<head>
+	<script src="/webjars/angularjs/1.2.8/angular.min.js"></script>
+	<script src="/js/taskController.js"></script>
+</head>
+<body>
+hello 
+	<div id="ctrl-as-exmpl" ng-controller="TaskController1 as taskController">
+		<table>
+			<tr ng-repeat="task in taskController.taskBlock">
+				<td>{{task.drug}}</td>
+				<td>{{task.dose}}</td>
+				<td>
+					<table>
+						<tr ng-repeat="termin in task.termins">
+							<td>{{termin.malProDay}} mal pro Tag, {{termin.days}} Tags</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<table>
+			<tr ng-repeat="task in taskController.taskBlock2">
+				<td>{{task.drug}}</td>
+				<td>{{task.dose}}</td>
+				<td>{{task.malProDay}} mal pro Tag, {{task.days}} Tags</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
