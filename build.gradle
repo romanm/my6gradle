@@ -13,13 +13,13 @@ apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'my6gradle'
-    version =  '0.1.0'
+	baseName = 'my6gradle'
+	version =  '0.1.0'
 }
 
 repositories {
-    mavenCentral()
-    maven { url "http://repo.spring.io/libs-milestone" }
+	mavenCentral()
+	maven { url "http://repo.spring.io/libs-milestone" }
 }
 
 dependencies {
@@ -35,5 +35,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.8'
+	gradleVersion = '1.8'
 }

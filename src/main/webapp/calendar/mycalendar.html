@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="/webjars/fullcalendar/1.6.4/fullcalendar.print.css" media='print'>
-<link rel="stylesheet"
-	href="/webjars/fullcalendar/1.6.4/fullcalendar.css" />
+<link rel="stylesheet"	href="/webjars/fullcalendar/1.6.4/fullcalendar.print.css" media='print'>
+<link rel="stylesheet"	href="/webjars/fullcalendar/1.6.4/fullcalendar.css" />
+<link rel="stylesheet"	href="/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css">
 <script src="/webjars/jquery/2.0.3/jquery.js"></script>
 <script src="/webjars/jquery-ui/1.10.3/ui/jquery-ui.js"></script>
 <script src="/webjars/fullcalendar/1.6.4/fullcalendar.js"></script>
@@ -21,9 +20,47 @@
 				center:"title",
 				right: 'month,agendaWeek,agendaDay'
 			},
+			firstDay:1,
+			weekNumbers:true,
+			weekends:true,
+			theme:false,
 			selectable:true,
+			eventClick:function(calEvent, jsEvent, view) {
+				var didi=$( "#dynamicDialog" );
+				didi.dialog({
+					title:"Event: '"+ calEvent.title+"' x="+ jsEvent.pageX,
+					buttons: [{
+						id:"okButton",
+						text:"OK",
+						click:function(){
+							calEvent.title=$( "#i1" ).val();
+							calendar.fullCalendar( 'rerenderEvents' );
+							$(this).dialog("close");
+						}
+					}],
+					open:function(){
+						didi.empty();
+						didi.append('<input id="i1" type="text" name="amount" value="'+calEvent.title+'"/>');
+						/*  
+						$('#i1').keypress(function(event){
+							if(event.keyCode == 13){
+								$('#okButton').click();
+							}
+						});
+						*/
+					}
+				});
+			/*
+				alert('Event: ' + calEvent.title
+				+', Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY
+				+', View: ' + view.name);
+			*/
+				// change the border color just for fun
+				$(this).css('border-color', 'red');
+
+			},
 			select: function(start,end,allDay){
-				var title = prompt("New Event:");
+				var title = prompt("New Event ("+start.toDateString()+"):");
 				if(title){
 					calendar.fullCalendar("renderEvent",
 						{
@@ -45,9 +82,17 @@
 				allDay: false
 			}
 			]
+			/*
+			,
+			eventRender: function(event, element) {
+		        element.qtip({
+		            content: event.description
+		        });
+		    }
+			*/
 		});
 	});
-	</script>
+</script>
 	<style type="text/css">
 	#calendar {
 		width: 900px;
@@ -57,7 +102,9 @@
 </head>
 <body>
 	<h1>My calendar</h1>
-	<a href="http://arshaw.com/fullcalendar/">FullCalendar</a> from  Adam Shaw (arshaw)
+	Used <a href="http://arshaw.com/fullcalendar/">FullCalendar</a> from  Adam Shaw (arshaw)
 	<div id='calendar'></div>
+	<div id="dynamicDialog" title="Basic modal dialog" style="display: none;">
+	</div>
 </body>
 </html>
